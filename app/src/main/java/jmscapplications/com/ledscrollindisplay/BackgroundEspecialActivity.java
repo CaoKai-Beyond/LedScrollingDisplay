@@ -49,7 +49,7 @@ public class BackgroundEspecialActivity extends CustomActivityCenterTittle{
     private boolean t2Available;
     private boolean t3Available;
     private boolean t4Available;
-
+    private boolean t5Available;
     public class ImageAdapter extends BaseAdapter {
         private final boolean freeContentAchieved;
         private final ArrayList<Boolean> freeItems;
@@ -97,7 +97,7 @@ public class BackgroundEspecialActivity extends CustomActivityCenterTittle{
 
         private Integer[] getIcon(boolean isPayVersion, ArrayList<Boolean> freeItems) {
             if (isPayVersion || this.freeContentAchieved || this.isLite) {
-                return new Integer[]{R.drawable.b37, R.drawable.b38, R.drawable.b39, R.drawable.b40};
+                return new Integer[]{R.drawable.b37, R.drawable.b38, R.drawable.b39, R.drawable.b40,R.drawable.b41};
             }
             ArrayList icons = new ArrayList();
             for (int i = 0; i < freeItems.size(); i++) {
@@ -163,6 +163,8 @@ public class BackgroundEspecialActivity extends CustomActivityCenterTittle{
         this.availableItems.add(this.t2Available);
         this.availableItems.add(this.t3Available);
         this.availableItems.add(this.t4Available);
+        this.availableItems.add(this.t5Available);
+
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);

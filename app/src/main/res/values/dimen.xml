@@ -11,7 +11,7 @@
     <dimen name="search_field_delete_margin">10dp</dimen>
     <dimen name="table_margin">16dp</dimen>
     <dimen name="card_margin_2">12dp</dimen>
-    <dimen name="card_radius">8dp</dimen>
+    <dimen name="card_radius">2dp</dimen>
     <dimen name="search_field_margin">12dp</dimen>
     <dimen name="search_field_padding">8dp</dimen>
     <dimen name="table_text_field_padding">8dp</dimen>

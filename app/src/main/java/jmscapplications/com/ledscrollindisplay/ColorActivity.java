@@ -58,5 +58,16 @@ public class ColorActivity extends CustomActivityCenterTittle {
             }
         }, 80);
     }
+    @OnClick({R.id.okCustomTextView})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.okCustomTextView:
+                setResult(-1, getIntent().putExtra("value", this.colorPicker.getColor()));
+                finish();
+                return;
+            default:
+                return;
+        }
+    }
 
 }

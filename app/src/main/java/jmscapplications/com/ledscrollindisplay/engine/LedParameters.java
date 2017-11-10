@@ -197,6 +197,8 @@ public class LedParameters implements Cloneable {
                 return R.drawable.b39r;
             case 39:
                 return R.drawable.b40r;
+            case 40:
+                return R.drawable.b41;
             default:
                 return 0;
         }

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     defaultConfig {
         applicationId "com.ckmobile.led"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 21
         versionCode 10000
         versionName "1.0.0"
