@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/general_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_card">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:visibility="visible"
+        app:cardBackgroundColor="#fff"
+        app:cardCornerRadius="6dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/countriesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/countriesButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_span="8"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_flags_back"
+                    android:textColor="#303030"
+                    android:textSize="@dimen/table_text_size"
+                    android:tint="@color/colorPrimary" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                        android:id="@+id/countries"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/flags"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/text_size_big"
+                        app:customTypeFace="MEDIUM" />
+
+                    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                        android:id="@+id/countries_sub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/flags_sub"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/table_text_size"
+                        app:customTypeFace="LIGHT" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/loveLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/countriesLayout"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/loveButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_span="8"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_flags_back"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/table_text_size"
+                    android:tint="#ea5d16" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                        android:id="@+id/love"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:text="@string/special_ocasion"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/text_size_big"
+                        app:customTypeFace="MEDIUM" />
+
+                    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                        android:id="@+id/love_sub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/special_occasion_sub"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/table_text_size"
+                        app:customTypeFace="LIGHT" />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

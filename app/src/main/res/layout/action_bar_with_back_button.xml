@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+        app:customTypeFace="MEDIUM"
+        android:gravity="center"
+        android:id="@+id/tittle"
+        android:layout_height="wrap_content"
+        android:layout_weight="@integer/action_bar_width_text_scale"
+        android:layout_width="wrap_content"
+        android:textColor="#fff"
+        android:textSize="@dimen/action_bar_tittle" />
+
+    <View
+        android:layout_height="match_parent"
+        android:layout_weight="@integer/action_bar_width_option_scale"
+        android:layout_width="1dip" />
+</LinearLayout>

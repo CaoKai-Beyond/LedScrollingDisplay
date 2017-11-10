@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingBottom="32dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="24dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+        app:customTypeFace="REGULAR"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="@string/how_was_xperience"
+        android:textSize="@dimen/text_size_big" />
+
+    <LinearLayout
+        android:layout_height="70dip"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/rate1"
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:padding="10dip"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:src="@drawable/start_empty" />
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/rate2"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/start_empty" />
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/rate3"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dip"
+            android:layout_width="0dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/start_empty" />
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/rate4"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/start_empty" />
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/rate5"
+            android:padding="10dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/start_empty" />
+    </LinearLayout>
+</LinearLayout>

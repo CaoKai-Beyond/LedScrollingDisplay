@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/general_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_card"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        app:cardBackgroundColor="#505050"
+        app:cardCornerRadius="6dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/colorPickerBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.larswerkman.holocolorpicker.ColorPicker
+                    android:id="@+id/color_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp" />
+
+                <com.larswerkman.holocolorpicker.SVBar
+                    android:id="@+id/svbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/colorPickerBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:id="@+id/selectLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dip"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                  >
+
+                    <ImageButton
+                        android:layout_gravity="center"
+                        android:id="@+id/circular_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_span="8"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_large_button_background"
+                        android:text="@string/blink_effect"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/table_text_size"
+                        android:tint="@color/colorPrimary" />
+
+                    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                        android:id="@+id/okCustomTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_span="8"
+                        android:gravity="center"
+                        android:text="@string/ok"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/table_text_size"
+                        app:customTypeFace="MEDIUM" />
+                </FrameLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

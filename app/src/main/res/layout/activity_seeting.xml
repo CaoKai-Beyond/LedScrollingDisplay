@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/general_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:titleTextColor="#fff">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <SurfaceView
+            android:id="@+id/display"
+            android:layout_width="match_parent"
+            android:layout_height="80dip"
+            android:visibility="visible" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+           >
+            
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/top_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dip"
+                    android:background="@color/gray">
+
+                    <jmscapplications.com.ledscrollindisplay.custom_views.CustomAutoCompleteTextView
+                        android:id="@+id/search_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/search_field_margin"
+                        android:layout_marginRight="@dimen/search_field_margin"
+                        android:background="@drawable/shape_white_search"
+                        android:hint="@string/type_text"
+                        android:maxLength="@integer/max_search_characters"
+                        android:padding="@dimen/search_field_padding"
+                        android:textColor="@color/gray_text_dark"
+                        android:textColorHint="@color/gray_text_hint"
+                        app:customTypeFace="THIN" />
+
+                    <ImageButton
+                        android:id="@+id/delete_button"
+                        android:layout_width="30dip"
+                        android:layout_height="30dip"
+                        android:layout_alignRight="@+id/search_field"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/search_field_delete_margin"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/search_delete_button"
+                        android:visibility="gone" />
+
+                    <ImageButton
+                        android:id="@id/search_button"
+                        android:layout_width="30dip"
+                        android:layout_height="30dip"
+                        android:layout_alignRight="@+id/search_field"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/search_field_delete_margin"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/micro" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/table"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="vertical"
+                    android:stretchColumns="*">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dip"
+                        >
+
+                        <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:padding="@dimen/table_text_field_padding"
+                            android:text="@string/invert_direction"
+                            android:textColor="@color/gray_text_dark"
+                            android:textSize="@dimen/table_text_size"
+                            app:customTypeFace="THIN" />
+
+                        <android.support.v7.widget.SwitchCompat
+                            android:id="@+id/invertSwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dip" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginLeft="@dimen/about_layout_margin"
+                        android:layout_marginRight="@dimen/about_layout_margin"
+                        android:background="?android:attr/dividerVertical" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dip"
+                       >
+
+                        <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_span="16"
+                            android:padding="@dimen/table_text_field_padding"
+                            android:text="@string/mirror_effect"
+                            android:textColor="@color/gray_text_dark"
+                            android:textSize="@dimen/table_text_size"
+                            app:customTypeFace="THIN" />
+
+                        <android.support.v7.widget.SwitchCompat
+                            android:id="@+id/mirrorSwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dip" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginLeft="@dimen/about_layout_margin"
+                        android:layout_marginRight="@dimen/about_layout_margin"
+                        android:background="?android:attr/dividerVertical" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dip"
+                       >
+
+                        <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:padding="@dimen/table_text_field_padding"
+                            android:text="@string/blink_effect"
+                            android:textColor="@color/gray_text_dark"
+                            android:textSize="@dimen/table_text_size"
+                            app:customTypeFace="THIN" />
+
+                        <android.support.v7.widget.SwitchCompat
+                            android:id="@+id/blinkSwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dip" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginLeft="@dimen/about_layout_margin"
+                        android:layout_marginRight="@dimen/about_layout_margin"
+                        android:background="?android:attr/dividerVertical" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dip"
+                      >
+
+                        <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:padding="@dimen/table_text_field_padding"
+                            android:text="@string/font"
+                            android:textColor="@color/gray_text_dark"
+                            android:textSize="@dimen/table_text_size"
+                            app:customTypeFace="THIN" />
+
+                        <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                            android:id="@+id/change_typeface"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dip"
+                            android:gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
+                            android:text="@string/change"
+                            android:textColor="@color/colorPrimary"
+                            app:customTypeFace="MEDIUM" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginLeft="@dimen/about_layout_margin"
+                        android:layout_marginRight="@dimen/about_layout_margin"
+                        android:background="?android:attr/dividerVertical" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dip"
+                       >
+
+                        <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:padding="@dimen/table_text_field_padding"
+                            android:text="@string/scroll_speed"
+                            android:textColor="@color/gray_text_dark"
+                            android:textSize="@dimen/table_text_size"
+                            app:customTypeFace="THIN" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dip"
+                       >
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_span="20"
+                          >
+
+                            <jmscapplications.com.ledscrollindisplay.CustomSeekBarView
+                                android:id="@+id/seekBarField"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dip"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_span="20"
+                                android:padding="22dp" />
+
+                            <jmscapplications.com.ledscrollindisplay.custom_views.CustomButtonView
+                                android:id="@+id/own_adv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/green"
+                                android:text="@string/remove_adv"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/text_size_big"
+                                android:visibility="gone"
+                                app:customTypeFace="MEDIUM" />
+                        </FrameLayout>
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginBottom="10dip"
+                        android:background="?android:attr/dividerVertical" />
+
+                </LinearLayout>
+
+                <android.support.design.widget.CoordinatorLayout
+                    android:id="@+id/bottom_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                    android:layout_marginTop="32dp">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cardview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/card_margin_2"
+                        android:layout_marginLeft="@dimen/card_margin_2"
+                        android:layout_marginRight="@dimen/card_margin_2"
+                        android:layout_marginTop="26dp"
+                        app:cardBackgroundColor="@color/gray_card"
+                        app:cardCornerRadius="8dp">
+
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="46dp"
+                            android:paddingLeft="6dp"
+                            android:paddingRight="6dp"
+                            android:stretchColumns="*">
+
+                            <TableRow>
+
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_span="16"
+                                    android:layout_weight="1.0">
+
+                                    <ImageButton
+                                        android:id="@+id/bkg_background"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_span="16"
+                                        android:background="@android:color/transparent"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/ic_button_background"
+                                        android:text="@string/blink_effect"
+                                        android:textColor="#fff"
+                                        android:textSize="@dimen/table_text_size"
+                                        android:tint="@color/gray" />
+
+                                    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                                        android:id="@+id/bkgCustomTex"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                                        android:layout_span="16"
+                                        android:gravity="center"
+                                        android:text="@string/background_image"
+                                        android:textColor="#fff"
+                                        android:textSize="@dimen/table_text_size"
+                                        app:customTypeFace="LIGHT" />
+                                </FrameLayout>
+                            </TableRow>
+
+                            <TableRow android:layout_marginBottom="8dp">
+
+                                <FrameLayout
+                                    android:layout_marginRight="4dp"
+                                    android:layout_weight="1.0">
+
+                                    <ImageButton
+                                        android:id="@+id/textColorBackground"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_span="8"
+                                        android:background="@android:color/transparent"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/ic_button_background"
+                                        android:text="@string/blink_effect"
+                                        android:textColor="#fff"
+                                        android:textSize="@dimen/table_text_size"
+                                        android:tint="@color/green" />
+
+                                    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                                        android:id="@+id/textColorCustomTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                                        android:layout_span="8"
+                                        android:gravity="center"
+                                        android:text="@string/text_color"
+                                        android:textColor="#fff"
+                                        android:textSize="@dimen/table_text_size"
+                                        android:tint="@color/green"
+                                        app:customTypeFace="MEDIUM" />
+                                </FrameLayout>
+
+                                <FrameLayout android:layout_weight="1.0">
+
+                                    <ImageButton
+                                        android:id="@+id/bkgColorBackground"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_span="8"
+                                        android:background="@android:color/transparent"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/ic_button_background"
+                                        android:text="@string/blink_effect"
+                                        android:textColor="#fff"
+                                        android:textSize="@dimen/table_text_size"
+                                        android:tint="#303030" />
+
+                                    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                                        android:id="@+id/bkgColorCustomTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                                        android:layout_span="8"
+                                        android:gravity="center"
+                                        android:text="@string/background_color"
+                                        android:textColor="#fff"
+                                        android:textSize="@dimen/table_text_size"
+                                        app:customTypeFace="MEDIUM" />
+                                </FrameLayout>
+                            </TableRow>
+
+                            <TableRow android:layout_marginBottom="8dp">
+
+                                <FrameLayout
+                                    android:layout_marginRight="4dp"
+                                    android:layout_weight="1.0">
+
+                                    <ImageButton
+                                        android:id="@+id/text_small_bkg"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_span="8"
+                                        android:background="@android:color/transparent"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/ic_button_background"
+                                        android:text="@string/blink_effect"
+                                        android:textColor="#fff"
+                                        android:textSize="@dimen/table_text_size"
+                                        android:tint="@color/colorPrimary" />
+
+                                    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                                        android:id="@+id/text_small_txt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                                        android:layout_span="8"
+                                        android:gravity="center"
+                                        android:text="@string/small"
+                                        android:textColor="#fff"
+                                        android:textSize="@dimen/table_text_size"
+                                        android:tint="@color/green"
+                                        app:customTypeFace="MEDIUM" />
+                                </FrameLayout>
+
+                                <FrameLayout android:layout_weight="1.0">
+
+                                    <ImageButton
+                                        android:id="@+id/text_big_bkg"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_span="8"
+                                        android:background="@android:color/transparent"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/ic_button_background"
+                                        android:text="@string/blink_effect"
+                                        android:textColor="#fff"
+                                        android:textSize="@dimen/table_text_size"
+                                        android:tint="@color/colorPrimary" />
+
+                                    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                                        android:id="@+id/text_big_txt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                                        android:layout_span="8"
+                                        android:gravity="center"
+                                        android:text="@string/big"
+                                        android:textColor="#fff"
+                                        android:textSize="@dimen/table_text_size"
+                                        app:customTypeFace="MEDIUM" />
+                                </FrameLayout>
+                            </TableRow>
+
+                            <TableRow android:layout_marginBottom="8dp">
+
+                                <FrameLayout
+                                    android:layout_marginRight="4dp"
+                                    android:layout_weight="1.0">
+
+                                    <ImageButton
+                                        android:id="@+id/square_background"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_span="8"
+                                        android:background="@android:color/transparent"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/ic_button_background"
+                                        android:textColor="#fff"
+                                        android:textSize="@dimen/table_text_size"
+                                        android:tint="@color/colorPrimary" />
+
+                                    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                                        android:id="@+id/squaredCustomTex"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                                        android:layout_span="8"
+                                        android:gravity="center"
+                                        android:text="@string/squared_led"
+                                        android:textColor="#fff"
+                                        android:textSize="@dimen/table_text_size"
+                                        android:tint="@color/green"
+                                        app:customTypeFace="MEDIUM" />
+                                </FrameLayout>
+
+                                <FrameLayout android:layout_weight="1.0">
+
+                                    <ImageButton
+                                        android:id="@+id/circular_background"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_span="8"
+                                        android:background="@android:color/transparent"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/ic_button_background"
+                                        android:text="@string/blink_effect"
+                                        android:textColor="#fff"
+                                        android:textSize="@dimen/table_text_size"
+                                        android:tint="@color/gray" />
+
+                                    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+                                        android:id="@+id/circularCustomTex"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                                        android:layout_span="8"
+                                        android:gravity="center"
+                                        android:text="@string/circular_led"
+                                        android:textColor="#fff"
+                                        android:textSize="@dimen/table_text_size"
+                                        app:customTypeFace="LIGHT" />
+                                </FrameLayout>
+                            </TableRow>
+                        </TableLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/playButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="22dp"
+                        android:scaleType="center"
+                        android:src="@drawable/ic_play"
+                        app:backgroundTint="@color/colorPrimary"
+                        app:borderWidth="0dp"
+                        app:elevation="6dp"
+                        app:fabSize="auto"
+                        app:layout_anchor="@+id/cardview"
+                        app:layout_anchorGravity="right" />
+                </android.support.design.widget.CoordinatorLayout>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingBottom="24dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="24dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView
+        app:customTypeFace="REGULAR"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="@string/rate_google"
+        android:textSize="@dimen/text_size_big" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <jmscapplications.com.ledscrollindisplay.custom_views.CustomButtonView
+            android:background="@drawable/ic_large_button_background"
+            app:customTypeFace="MEDIUM"
+            android:id="@+id/rate"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:text="@string/rate"
+            android:textSize="16sp" />
+
+        <jmscapplications.com.ledscrollindisplay.custom_views.CustomButtonView
+            android:background="@drawable/ic_large_button_background"
+            app:customTypeFace="LIGHT"
+            android:id="@+id/later"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_width="match_parent"
+            android:text="@string/later" />
+
+        <jmscapplications.com.ledscrollindisplay.custom_views.CustomButtonView
+            app:customTypeFace="LIGHT"
+            android:id="@+id/dont_ask"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/dont_ask"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+</LinearLayout>

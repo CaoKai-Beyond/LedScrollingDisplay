@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="action_bar_tittle">18sp</dimen>
+    <dimen name="table_text_size">16sp</dimen>
+    <dimen name="table_text_size_2">22sp</dimen>
+    <dimen name="table_text_size_small">12sp</dimen>
+
+    <dimen name="text_size_big">20sp</dimen>
+    <dimen name="text_size_big_2">24sp</dimen>
+
+    <dimen name="search_field_delete_margin">10dp</dimen>
+    <dimen name="table_margin">16dp</dimen>
+    <dimen name="card_margin_2">12dp</dimen>
+    <dimen name="card_radius">8dp</dimen>
+    <dimen name="search_field_margin">12dp</dimen>
+    <dimen name="search_field_padding">8dp</dimen>
+    <dimen name="table_text_field_padding">8dp</dimen>
+    <dimen name="table_text_field_top_marging">8dp</dimen>
+    <dimen name="about_layout_margin">10dip</dimen>
+</resources>

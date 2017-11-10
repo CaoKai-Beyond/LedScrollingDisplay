@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomTextView">
+        <attr name="customTypeFace" format="enum">
+            <enum name="THIN" value="1"/>
+            <enum name="LIGHT" value="2"/>
+            <enum name="REGULAR" value="3"/>
+            <enum name="MEDIUM" value="4"/>
+            <enum name="BOLD" value="5"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="TypeFaceWeight">
+        <attr name="Weight" format="integer"/>
+    </declare-styleable>
+</resources>
