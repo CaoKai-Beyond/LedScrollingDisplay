@@ -44,7 +44,7 @@ public class DisplayScreenActivity extends Activity implements Callback, OnClick
         getWindow().setFlags(1024, 1024);
         super.onCreate(savedInstanceState);
         getWindow().addFlags(128);
-        this.parameters = (LedParameters) new Gson().fromJson(getIntent().getStringExtra("value"), LedParameters.class);
+        this.parameters = (LedParameters) new Gson().fromJson(getIntent().getStringExtra(LedParameters.KEY), LedParameters.class);
         setContentView((int) R.layout.activity_display);
         ButterKnife.bind((Activity) this);
         this.buttonsLayout = (LinearLayout) findViewById(R.id.ButtonsLayout);

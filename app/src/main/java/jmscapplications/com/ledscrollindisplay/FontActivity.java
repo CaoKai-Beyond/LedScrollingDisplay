@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import jmscapplications.com.ledscrollindisplay.analityc.AnalyticMethods;
 import jmscapplications.com.ledscrollindisplay.custom_views.CustomActivityCenterTittle;
 import jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView;
+import jmscapplications.com.ledscrollindisplay.engine.LedParameters;
 
 public class FontActivity extends CustomActivityCenterTittle{
     private ImageAdapter adapter;
@@ -222,10 +223,10 @@ public class FontActivity extends CustomActivityCenterTittle{
         this.gridview.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View v, int position, long id) {
                 if (!FontActivity.this.isUnPayVersion || FontActivity.this.isLiteVersion) {
-                    FontActivity.this.setResult(-1, FontActivity.this.getIntent().putExtra("value", position));
+                    FontActivity.this.setResult(-1, FontActivity.this.getIntent().putExtra(LedParameters.KEY, position));
                     FontActivity.this.finish();
                 } else if ((Boolean) FontActivity.this.availableItems.get(position)) {
-                    FontActivity.this.setResult(-1, FontActivity.this.getIntent().putExtra("value", position));
+                    FontActivity.this.setResult(-1, FontActivity.this.getIntent().putExtra(LedParameters.KEY, position));
                     FontActivity.this.finish();
                 } else {
                     FontActivity.this.currentPosition = position;

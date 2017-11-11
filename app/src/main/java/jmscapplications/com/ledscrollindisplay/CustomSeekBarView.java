@@ -1,7 +1,7 @@
 package jmscapplications.com.ledscrollindisplay;
 
 /**
- * Created by Z on 2017/11/10.
+ * Created by caokai on 2017/11/10.
  */
 
 import android.annotation.TargetApi;

@@ -17,6 +17,7 @@ import com.ckmobile.led.R;
 import com.larswerkman.holocolorpicker.ColorPicker;
 import com.larswerkman.holocolorpicker.SVBar;
 import jmscapplications.com.ledscrollindisplay.custom_views.CustomActivityCenterTittle;
+import jmscapplications.com.ledscrollindisplay.engine.LedParameters;
 
 public class ColorActivity extends CustomActivityCenterTittle {
 
@@ -36,7 +37,7 @@ public class ColorActivity extends CustomActivityCenterTittle {
         ButterKnife.bind((Activity) this);
         enableDetectKeyboardHidden(R.id.general_layout);
         setActionBarParameters(getString(R.string.select_color), true);
-        this.colorValue = getIntent().getIntExtra("value", 0);
+        this.colorValue = getIntent().getIntExtra(LedParameters.KEY, 0);
         this.colorPicker.addSVBar(this.svbar);
         this.colorPicker.setShowOldCenterColor(false);
         this.colorPicker.setColor(this.colorValue);
@@ -62,7 +63,7 @@ public class ColorActivity extends CustomActivityCenterTittle {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.okCustomTextView:
-                setResult(-1, getIntent().putExtra("value", this.colorPicker.getColor()));
+                setResult(-1, getIntent().putExtra(LedParameters.KEY, this.colorPicker.getColor()));
                 finish();
                 return;
             default:

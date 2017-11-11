@@ -1,5 +1,6 @@
 package jmscapplications.com.ledscrollindisplay.engine;
 
+import android.net.Uri;
 import android.util.Base64;
 
 import com.ckmobile.led.R;
@@ -7,6 +8,11 @@ import com.ckmobile.led.R;
 import java.io.UnsupportedEncodingException;
 
 public class LedParameters implements Cloneable {
+
+
+
+    public static final String KEY="value";
+
     public static final int CIRCULAR_SHAPE = 2;
     public static final int SQUARED_SHAPE = 1;
     int bckColor;
@@ -22,6 +28,8 @@ public class LedParameters implements Cloneable {
     int textColor;
     private int textType;
     boolean useImageBck;
+    private String uri;
+
 
     public LedParameters clone() {
         try {
@@ -29,6 +37,13 @@ public class LedParameters implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new AssertionError(e);
         }
+    }
+
+    public void setUri(String uri){
+        this.uri=uri;
+    }
+    public String getUri(){
+        return uri;
     }
 
     public boolean isBckgroundImageEnable() {

@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import jmscapplications.com.ledscrollindisplay.analityc.AnalyticMethods;
 import jmscapplications.com.ledscrollindisplay.custom_views.CustomActivityCenterTittle;
 import jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView;
+import jmscapplications.com.ledscrollindisplay.engine.LedParameters;
 
 public class BackgroundEspecialActivity extends CustomActivityCenterTittle{
     private ImageAdapter adapter;
@@ -153,7 +154,7 @@ public class BackgroundEspecialActivity extends CustomActivityCenterTittle{
         this.t2Available = true;
         this.t3Available = true;
         this.t4Available = true;
-
+        t5Available=true;
 
 
 
@@ -173,10 +174,10 @@ public class BackgroundEspecialActivity extends CustomActivityCenterTittle{
         this.gridview.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View v, int position, long id) {
                 if (!BackgroundEspecialActivity.this.isUnPayVersion || BackgroundEspecialActivity.this.isFreeContentRetrieved || BackgroundEspecialActivity.this.isLiteVersion) {
-                    BackgroundEspecialActivity.this.setResult(-1, BackgroundEspecialActivity.this.getIntent().putExtra("value", position + 36));
+                    BackgroundEspecialActivity.this.setResult(Activity.RESULT_OK, BackgroundEspecialActivity.this.getIntent().putExtra(LedParameters.KEY, position + 36));
                     BackgroundEspecialActivity.this.finish();
                 } else if ((Boolean) BackgroundEspecialActivity.this.availableItems.get(position)) {
-                    BackgroundEspecialActivity.this.setResult(-1, BackgroundEspecialActivity.this.getIntent().putExtra("value", position + 36));
+                    BackgroundEspecialActivity.this.setResult(Activity.RESULT_OK, BackgroundEspecialActivity.this.getIntent().putExtra(LedParameters.KEY, position + 36));
                     BackgroundEspecialActivity.this.finish();
                 } else {
                     BackgroundEspecialActivity.this.currentPosition = position + 36;

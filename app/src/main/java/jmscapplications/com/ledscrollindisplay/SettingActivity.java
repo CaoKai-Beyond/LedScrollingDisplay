@@ -271,10 +271,10 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == -1) {
+        if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case 1:
-                    int currentTextColor = data.getIntExtra("value", 0);
+                    int currentTextColor = data.getIntExtra(LedParameters.KEY, 0);
                     if (ColorUtils.calculateContrast(-1, currentTextColor) < 1.6d) {
                         this.textColorCustomTextView.setTextColor(-12303292);
                     } else {
@@ -284,7 +284,7 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
                     this.textColorBackground.setColorFilter(currentTextColor);
                     return;
                 case 2:
-                    int currentBkgColor = data.getIntExtra("value", 0);
+                    int currentBkgColor = data.getIntExtra(LedParameters.KEY, 0);
                     if (ColorUtils.calculateContrast(-1, currentBkgColor) < 1.6d) {
                         this.bkgColorCustomTextView.setTextColor(-12303292);
                     } else {
@@ -294,14 +294,22 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
                     this.bkgColorBackground.setColorFilter(currentBkgColor);
                     return;
                 case 3:
-                    this.ledParameters.setImagePosition(data.getIntExtra("value", 0));
+
+                    if(data.hasCategory(LedParameters.KEY)){
+                        this.ledParameters.setUri(null);
+                        this.ledParameters.setImagePosition(data.getIntExtra(LedParameters.KEY, 0));
+                    }else if(data.getData()!=null){
+                        this.ledParameters.setUri("content://media"+data.getData().getPath());
+                        this.ledParameters.setImagePosition(0);
+                    }
+
                     return;
                 case 4:
                     this.searchField.setText((String) data.getStringArrayListExtra("android.speech.extra.RESULTS").get(0));
                     this.searchField.setSelection(this.searchField.getText().length());
                     return;
                 case 5:
-                    this.ledParameters.setTextType(data.getIntExtra("value", 0));
+                    this.ledParameters.setTextType(data.getIntExtra(LedParameters.KEY, 0));
                     return;
                 default:
                     return;
@@ -464,10 +472,10 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
                 startActivityForResult(new Intent(this, BackGroundListActivity.class), 3);
                 return;
             case R.id.textColorCustomTextView:
-                startActivityForResult(new Intent(this, ColorActivity.class).putExtra("value", this.ledParameters.getTextcolor()), 1);
+                startActivityForResult(new Intent(this, ColorActivity.class).putExtra(LedParameters.KEY, this.ledParameters.getTextcolor()), 1);
                 return;
             case R.id.bkgColorCustomTextView:
-                startActivityForResult(new Intent(this, ColorActivity.class).putExtra("value", this.ledParameters.getBackgroundcolor()), 2);
+                startActivityForResult(new Intent(this, ColorActivity.class).putExtra(LedParameters.KEY, this.ledParameters.getBackgroundcolor()), 2);
                 return;
             case R.id.text_small_txt:
                 selectButton(this.textSmallBkg, this.textSmallTxt);
@@ -502,7 +510,7 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
                 SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), 0);
                 sharedPreferences.edit().putString("default_values", json).apply();
                 sharedPreferences.edit().putString("autocomplete", autoCompleteJson).apply();
-                startActivity(new Intent(this, DisplayScreenActivity.class).putExtra("value", json));
+                startActivity(new Intent(this, DisplayScreenActivity.class).putExtra(LedParameters.KEY, json));
                 return;
             default:
                 return;

@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import jmscapplications.com.ledscrollindisplay.analityc.AnalyticMethods;
 import jmscapplications.com.ledscrollindisplay.custom_views.CustomActivityCenterTittle;
 import jmscapplications.com.ledscrollindisplay.custom_views.CustomTextView;
+import jmscapplications.com.ledscrollindisplay.engine.LedParameters;
 
 public class BackgroundFlagActivity extends CustomActivityCenterTittle{
     private ImageAdapter adapter;
@@ -311,10 +312,10 @@ public class BackgroundFlagActivity extends CustomActivityCenterTittle{
         this.gridview.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View v, int position, long id) {
                 if (!BackgroundFlagActivity.this.isUnPayVersion || BackgroundFlagActivity.this.isFreeContentRetrieved || BackgroundFlagActivity.this.isLiteVersion) {
-                    BackgroundFlagActivity.this.setResult(-1, BackgroundFlagActivity.this.getIntent().putExtra("value", position));
+                    BackgroundFlagActivity.this.setResult(-1, BackgroundFlagActivity.this.getIntent().putExtra(LedParameters.KEY, position));
                     BackgroundFlagActivity.this.finish();
                 } else if ((Boolean) BackgroundFlagActivity.this.availableItems.get(position)) {
-                    BackgroundFlagActivity.this.setResult(-1, BackgroundFlagActivity.this.getIntent().putExtra("value", position));
+                    BackgroundFlagActivity.this.setResult(-1, BackgroundFlagActivity.this.getIntent().putExtra(LedParameters.KEY, position));
                     BackgroundFlagActivity.this.finish();
                 } else {
                     BackgroundFlagActivity.this.currentPosition = position;

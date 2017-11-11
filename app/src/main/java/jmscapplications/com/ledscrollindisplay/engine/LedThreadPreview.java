@@ -10,11 +10,15 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.animation.SpringForce;
 import android.support.v4.internal.view.SupportMenu;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.SurfaceHolder;
+
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -337,10 +341,18 @@ public class LedThreadPreview extends Thread {
 
     private void getBackgroundColorFromImage(Context ctx) {
         this.backgrounColorFromImage = new ArrayList();
-        Bitmap bm = BitmapFactory.decodeResource(ctx.getResources(), this.parameters.getImageFromPosition());
+        Bitmap bm=null;
+        if(parameters.getUri()!=null){
+            try {
+                bm= MediaStore.Images.Media.getBitmap(ctx.getContentResolver(), Uri.parse(parameters.getUri()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
+            bm = BitmapFactory.decodeResource(ctx.getResources(), this.parameters.getImageFromPosition());
+        }
         if (bm == null) {
-//            FirebaseCrash.report(new Exception("Exception Fail creating bitmap with " + this.parameters.getImagePosition()));
-//            FirebaseCrash.log("Fail creating bitmap with " + this.parameters.getImagePosition());
+            return;
         }
         float hz = ((float) bm.getHeight()) / 18.0f;
         float wz = ((float) bm.getWidth()) / ((float) this.OUTPUT_SCREEN_WIDHT_RESOLUTION);

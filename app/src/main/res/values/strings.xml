@@ -55,7 +55,11 @@
     <string name="share_text">SHARE THIS MESSAGE</string>
     <string name="small">SMALL TEXT SIZE</string>
     <string name="special_ocasion">SPECIAL OCCASIONS</string>
+    <string name="image_ocasion">SELECT IMAGE</string>
+
     <string name="special_occasion_sub">BKG for those special moments</string>
+    <string name="image_occasion_sub">BKG for those image</string>
+
     <string name="squared_led">SQUARED LED</string>
     <string name="store">STORE</string>
     <string name="text_color">TEXT COLOR</string>
