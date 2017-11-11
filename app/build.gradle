@@ -1,7 +1,72 @@
 apply plugin: 'com.android.application'
+apply plugin: 'AndResGuard'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.7'
+    }
+}
+//微信压缩策略
+andResGuard {
+    // mappingFile = file("./resource_mapping.txt")
+    mappingFile = null
+    // It will be invalid when you sign apk with schemeV2
+    use7zip = true
+    useSign = true
+    // it will keep the origin path of your resources when it's true
+    keepRoot = false
+
+    whiteList = [
+            // your icon
+            "R.drawable.icon",
+            // for fabric
+            "R.string.com.crashlytics.*",
+            // for google-services
+            "R.string.google_app_id",
+            "R.string.gcm_defaultSenderId",
+            "R.string.default_web_client_id",
+            "R.string.ga_trackingId",
+            "R.string.firebase_database_url",
+            "R.string.google_api_key",
+            "R.string.google_crash_reporting_api_key"
+    ]
+    compressFilePattern = [
+            "*.png",
+            "*.jpg",
+            "*.jpeg",
+            "*.gif",
+            "resources.arsc"
+    ]
+    sevenzip {
+        artifact = 'com.tencent.mm:SevenZip:1.2.7'
+        //path = "/usr/local/bin/7za"
+    }
+
+    /**
+     * Optional: if finalApkBackupPath is null, AndResGuard will overwrite final apk
+     * to the path which assemble[Task] write to
+     **/
+    finalApkBackupPath = "${project.rootDir}/final.apk"
+
+    /**
+     * Optional: Specifies the name of the message digest algorithm to user when digesting the entries of JAR file
+     * Only works in V1signing, default value is "SHA1"
+     **/
+    digestalg = "SHA256"
+}
+
+
 
 android {
     compileSdkVersion 25
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.ckmobile.led"
         minSdkVersion 18
@@ -9,24 +74,39 @@ android {
         versionCode 10000
         versionName "1.0.0"
     }
+
+    signingConfigs {
+        relealse {
+            storeFile file("led.jks")
+            storePassword "caokai19930128"
+            keyAlias "led"
+            keyPassword "caokai19930128"
+        }
+
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.relealse
         }
     }
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:25.+'
+    compile 'com.android.support:appcompat-v7:25.+'
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.android.support:support-dynamic-animation:25.+'
     compile 'com.larswerkman:HoloColorPicker:1.5'
-    implementation 'com.android.support:cardview-v7:25.+'
-    implementation 'com.google.code.gson:gson:2.2.4'
-    implementation 'com.android.support:design:25.+'
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.android.support:cardview-v7:25.+'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.android.support:design:25.+'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.zhihu.android:matisse:0.4.3'
+    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true;
+    }
 }

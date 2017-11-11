@@ -9,6 +9,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,8 +25,17 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -34,6 +47,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
+import android.widget.TextView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -124,11 +139,11 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
     @BindView(R.id.toolbar)
     Toolbar        toolbar;
 
-
+    private  Dialog dialog;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView((int) R.layout.activity_seeting);
-        ButterKnife.bind((Activity) this);
+        setContentView(R.layout.activity_seeting);
+        ButterKnife.bind(this);
         enableDetectKeyboardHidden(R.id.general_layout);
         this.handler = new Handler(getMainLooper());
         this.runableUpdate = new Runnable() {
@@ -295,7 +310,7 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
                     return;
                 case 3:
 
-                    if(data.hasCategory(LedParameters.KEY)){
+                    if(data.hasExtra(LedParameters.KEY)){
                         this.ledParameters.setUri(null);
                         this.ledParameters.setImagePosition(data.getIntExtra(LedParameters.KEY, 0));
                     }else if(data.getData()!=null){
@@ -366,7 +381,30 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
 
             AlertDialog.Builder builder=new AlertDialog.Builder(this);
             builder.setTitle(android.R.string.dialog_alert_title);
-            builder.setMessage("Version:"+getAppVersionName(this));
+            float des=getResources().getDisplayMetrics().density;
+            TextView textView=new TextView(this);
+            textView.setTextColor(Color.BLACK);
+            textView.setTextSize(18);
+            textView.setPadding((int) (des*20),0,0,0);
+            textView.setMovementMethod(LinkMovementMethod.getInstance());
+
+
+            String feedback=getString(R.string.feedback);
+            String message="Version:"+getAppVersionName(this)+"\n"+feedback;
+            SpannableString spannableString=new SpannableString(message);
+            spannableString.setSpan(new AbsoluteSizeSpan((int) (20*des)),message.indexOf(feedback),message.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(View widget) {
+                    Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                            "mailto","caokai363541180@gmail.com", null));
+                    startActivity(Intent.createChooser(emailIntent, "Choose Email Client"));
+                    dialog.dismiss();
+                }
+            },message.indexOf(feedback),message.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            textView.setText(spannableString);
+
+            builder.setView(textView);
             builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -374,7 +412,7 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
                 }
             });
             builder.setCancelable(true);
-            Dialog dialog=builder.create();
+            dialog=builder.create();
             dialog.setCanceledOnTouchOutside(true);
             dialog.show();
         }

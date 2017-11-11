@@ -15,14 +15,14 @@
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/MainTheme"
-       >
+        android:theme="@style/MainTheme">
+
         <activity
-            android:theme="@style/SetTheme"
             android:name="jmscapplications.com.ledscrollindisplay.SettingActivity"
-            android:launchMode="singleTask"
             android:label="@string/app_name"
-            android:screenOrientation="sensorPortrait">
+            android:launchMode="singleTask"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@style/SetTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -58,7 +58,9 @@
             android:name="jmscapplications.com.ledscrollindisplay.FontActivity"
             android:screenOrientation="sensorPortrait" />
 
-
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="4b9f34518ea69018377aa73ec6f3ea46be61297b" />
 
     </application>
 </manifest>

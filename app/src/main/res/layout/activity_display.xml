@@ -60,7 +60,8 @@
                     android:layout_height="40dip"
                     android:layout_marginRight="32dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_play"
+                    android:tint="@android:color/white"
+                    android:src="@android:drawable/ic_media_play"
                     android:textColor="#303030"
                     android:visibility="visible" />
             </LinearLayout>

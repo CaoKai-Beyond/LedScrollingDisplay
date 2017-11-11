@@ -21,3 +21,10 @@
 #-renamesourcefileattribute SourceFile
 -dontwarn com.squareup.picasso.**
 -dontwarn com.bumptech.glide.**
+# fabric
+# Preserve annotations, line numbers, and source file names  确保混淆后可以查看崩溃详细信息
+-keepattributes *Annotation*,SourceFile,LineNumberTable
+-printmapping mapping.txt
+-keep public class * extends java.lang.Exception
+-keep class com.crashlytics.** { *; }
+-dontwarn com.crashlytics.**

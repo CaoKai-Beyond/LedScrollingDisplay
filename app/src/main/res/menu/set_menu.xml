@@ -5,12 +5,12 @@
        android:id="@+id/share"
        android:title="share"
        app:showAsAction="always"
-       android:icon="@android:drawable/ic_menu_share"
+       android:icon="@drawable/menu_share"
        />
    <item
        android:id="@+id/about"
        android:title="share"
        app:showAsAction="always"
-       android:icon="@android:drawable/ic_menu_help"
+       android:icon="@drawable/menu_about"
        />
 </menu>
