@@ -19,6 +19,7 @@ import com.ckmobile.led.R;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
+import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import java.util.List;
 
@@ -90,6 +91,8 @@ public class BackGroundListActivity extends CustomActivityCenterTittle {
                 Matisse.from(this)
                         .choose(MimeType.allOf())
                         .countable(true)
+                        .capture(true)
+                        .captureStrategy(new CaptureStrategy(true,"com.ckmobile.led.fileprovider"))
                         .maxSelectable(1)
                       //  .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
                       //  .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))

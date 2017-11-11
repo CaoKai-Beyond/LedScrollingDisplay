@@ -42,6 +42,7 @@ import android.view.MenuItem;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -51,6 +52,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
 import com.ckmobile.led.R;
@@ -156,10 +158,11 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
 
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         ActionBar actionBar=getSupportActionBar();
         actionBar.setTitle(R.string.home);
-        actionBar.setHomeButtonEnabled(false);
-        actionBar.setDisplayHomeAsUpEnabled(false);
+//        actionBar.setHomeButtonEnabled(false);
+//        actionBar.setDisplayHomeAsUpEnabled(false);
 
 
         //setActionBarParameters(getString(R.string.home), false);
@@ -185,7 +188,7 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
         Log.i("Json", value);
         this.handler.postDelayed(new Runnable() {
             public void run() {
-                SettingActivity.this.ledParameters = (LedParameters) new Gson().fromJson(value, LedParameters.class);
+                SettingActivity.this.ledParameters =new Gson().fromJson(value, LedParameters.class);
                 SettingActivity.this.initializeUI();
                 SettingActivity.this.playButton.performClick();
             }
@@ -264,11 +267,7 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
         }
         this.blinkSwitch.setChecked(this.ledParameters.isBlink());
         this.mirrorSwitch.setChecked(this.ledParameters.isMirror());
-        SwitchCompat switchCompat = this.invertSwitch;
-        if (this.ledParameters.isDirectionStraight()) {
-            z = false;
-        }
-        switchCompat.setChecked(z);
+        invertSwitch.setChecked(ledParameters.isDirectionStraight());
         this.searchField.setText(this.ledParameters.getMessage());
         this.searchField.setSelection(this.searchField.getText().length());
         checkTextFieldButton();
@@ -314,7 +313,7 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
                         this.ledParameters.setUri(null);
                         this.ledParameters.setImagePosition(data.getIntExtra(LedParameters.KEY, 0));
                     }else if(data.getData()!=null){
-                        this.ledParameters.setUri("content://media"+data.getData().getPath());
+                        this.ledParameters.setUri(data.getData().toString());
                         this.ledParameters.setImagePosition(0);
                     }
 
@@ -415,8 +414,10 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
             dialog=builder.create();
             dialog.setCanceledOnTouchOutside(true);
             dialog.show();
+        }else if(item.getItemId()==android.R.id.home){
+
         }
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
 
@@ -442,10 +443,25 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
         startActivity(Intent.createChooser(i, "Share"));
 
     }
-
+    @OnCheckedChanged({R.id.invertSwitch,R.id.mirrorSwitch,R.id.blinkSwitch})
+    public void OnCheckedChange(CompoundButton buttonView, boolean isChecked){
+        switch (buttonView.getId()){
+            case R.id.invertSwitch:
+                ledParameters.setStraightDirection(isChecked);
+                updatePreview(this.ledParameters);
+                break;
+            case R.id.mirrorSwitch:
+                this.ledParameters.setMirror(isChecked);
+                updatePreview(this.ledParameters);
+                break;
+            case R.id.blinkSwitch:
+                this.ledParameters.setBlink(isChecked);
+                updatePreview(this.ledParameters);
+                break;
+        }
+    }
     @OnClick({R.id.delete_button, R.id.search_button, R.id.squaredCustomTex, R.id.circularCustomTex, R.id.text_small_txt, R.id.text_big_txt,
-            R.id.bkgCustomTex, R.id.textColorCustomTextView, R.id.bkgColorCustomTextView, R.id.playButton, R.id.invertSwitch, R.id.mirrorSwitch,
-            R.id.blinkSwitch, R.id.own_adv,R.id.change_typeface})
+            R.id.bkgCustomTex, R.id.textColorCustomTextView, R.id.bkgColorCustomTextView, R.id.playButton, R.id.own_adv,R.id.change_typeface})
     public void onViewClicked(View view) {
         boolean z = true;
         LedParameters ledParameters;
@@ -462,32 +478,10 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
                 this.searchField.setText("");
                 checkTextFieldButton();
                 return;
-            case R.id.invertSwitch:
-                ledParameters = this.ledParameters;
-                if (this.invertSwitch.isChecked()) {
-                    z = false;
-                }
-                ledParameters.setStraightDirection(z);
-                updatePreview(this.ledParameters);
-                return;
-            case R.id.mirrorSwitch:
-                this.ledParameters.setMirror(this.mirrorSwitch.isChecked());
-                updatePreview(this.ledParameters);
-                return;
-            case R.id.blinkSwitch:
-                this.ledParameters.setBlink(this.blinkSwitch.isChecked());
-                updatePreview(this.ledParameters);
-                return;
             case R.id.change_typeface:
                 AnalyticMethods.registerEvent(this, AnalyticMethods.OPEN_TEXT);
                 startActivityForResult(new Intent(this, FontActivity.class), 5);
                 return;
-//            case R.id.share_text:
-//                AnalyticMethods.registerEvent(this, AnalyticMethods.SHARE_VIDEO);
-//                AnalyticMethods.registerEvent(this, AnalyticMethods.SHARE_VIDEO_SETTINGS);
-//                this.ledParameters.setMessage(this.searchField.getText().toString());
-//                updatePreview(this.ledParameters);
-//                return;
             case R.id.bkgCustomTex:
                 boolean z2;
                 boolean isBckEnable = this.ledParameters.isBckgroundImageEnable();
@@ -612,5 +606,14 @@ public class SettingActivity extends PreviewActivity implements CustomSeekBarVie
         }
         this.searchButton.setVisibility(View.GONE);
         this.deleteButton.setVisibility(View.VISIBLE);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        String json = new Gson().toJson(this.ledParameters);
+        SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), 0);
+        sharedPreferences.edit().putString("default_values", json).apply();
     }
 }

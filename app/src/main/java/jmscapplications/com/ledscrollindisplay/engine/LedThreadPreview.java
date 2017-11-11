@@ -89,6 +89,7 @@ public class LedThreadPreview extends Thread {
                         this.lasTimeBlink = System.currentTimeMillis();
                         this.blink = true;
                     }
+
                     nextFrame();
                 }
             }
