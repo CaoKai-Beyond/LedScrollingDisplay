@@ -75,8 +75,8 @@ android {
         applicationId "com.ckmobile.led"
         minSdkVersion 18
         targetSdkVersion 21
-        versionCode 10000
-        versionName "1.0.0"
+        versionCode 10010
+        versionName "1.0.1"
     }
 
     signingConfigs {
